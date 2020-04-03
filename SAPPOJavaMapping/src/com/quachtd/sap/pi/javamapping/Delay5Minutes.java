@@ -13,7 +13,10 @@ public class Delay5Minutes extends AbstractTransformation {
 
 	@Override
 	public void transform(TransformationInput arg0, TransformationOutput arg1) throws StreamTransformationException {
-		int minutes = arg0.getInputParameters().getInt("minutes");
+		int minutes = 5; //default 5 minutes
+		try {
+			minutes = arg0.getInputParameters().getInt("minutes");
+		} catch (Exception ex) {}
 		this.exeLogic(arg0.getInputPayload().getInputStream(), arg1.getOutputPayload().getOutputStream(), minutes);
 	}
 	
